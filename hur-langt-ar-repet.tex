@@ -1,0 +1,148 @@
+
+\documentclass[10pt]{article}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage[utf8]{inputenc}
+\usepackage{icomma}
+\title{Hur långt är repet?}
+\author{Huttunen, Sani\\Lette, Christoffer\\Bouvet Örebro}
+\date{2014-03-07}
+\allowdisplaybreaks
+
+\begin{document}
+  \maketitle
+
+  \section*{Problem}
+
+  I en kvadratisk hage med sidan $a$ är ett rep med längden
+  $r$ fäst mitt på en av sidorna. Bestäm $r$ så att den area
+  som repet spänner över hagen är exakt hälften av hagens totala area.
+
+  \section*{Lösning}
+
+  \subsection*{Definitioner}
+
+  \begin{description}
+    \item[$a$] är längden på kvadratens sida \emph{(givet)}
+    \item[$r$] är repets längd \emph{(sökta värdet)}
+    \item[$S$] betecknar den sida där repet är fäst
+    \item[$P$] är punkten på $S$ där repet är fäst och som delar $S$ i två lika stora delar
+    \item[$C$] är cirkeln med centrum i $P$ och radien $r$
+    \item[$T$] betecknar en av sidorna som är närstående till $S$
+    \item[$H$] är hörnet mellan $S$ och $T$
+    \item[$|HP|$] är således $a/2$
+  \end{description}
+
+  Man kan enkelt visa att $a/2 < r < a/\sqrt{2}$. Detta innebär att $C$ kommer att korsa $T$ i en punkt, kallad $B$.
+
+  \begin{description}
+    \item[$B$] är punkten där $C$ korsar $T$
+    \item[$|PB|$] är således $r$
+    \item[$b$] är avståndet mellan $H$ och $B$ ($b = |HB|$)
+    \item[$v$] är vinkeln $\angle HPB$
+  \end{description}
+
+  \subsection*{Diskussion}
+
+  Det är trivialt att se att $v$ på grund av kvadratens likformighet är oberoende av $a$ för det givna problemet. På samma sätt ser vi att $r$ kommer att vara direkt proportionell mot $a$, d.v.s. $r = f(a) = ka$.
+
+  Då inga andra storheter än $a$ är givna och $v$ är oberoende av $a$, så måste $v$ kunna bestämmas entydigt. $v$ kan sedan användas för att bestämma proportionalitetskonstanten $k$.
+
+  Som rimlighetskontroll så kan vi konstatera att\\
+  \centerline{$\frac{a}{2} < r < \frac{a}{\sqrt{2}} \Longleftrightarrow 0 < b < \frac{a}{2} \Longleftrightarrow 0 < v < \frac{\pi}{4}$}
+
+  $v$ är alltså mindre än $\frac{\pi}{4}$.
+
+  För att hitta $v$ behöver vi ställa upp en formel för arean under repet inne i hagen, d.v.s. den area där hagen och $C$ överlappar:\\
+  \centerline{$A_{hage} \cap A_C = A_{rep}$}
+  Tanken är att denna formel genom en serie substitutioner bara skall vara beroende på $v$ och $a$. När vi därefter jämställer denna formel med halva hagens yta
+  \begin{align}
+    A_{hage}/2 &= a^2/2 \label{halvahagen}
+  \end{align}
+  så borde alla hänvisningar till $a$ ta ut varandra enligt diskussionen ovan. Det enda som kvarstår då är en ekvation med enbart $v$ som okänd. Resten följer trivialt.
+
+  \subsection*{Beräkning av $A_{rep}$}
+
+  Vi beräknar $A_{rep}$ genom att dela upp denna yta i tre delar: två trianglar $A_{t}$ och en cirkelsektor $A_{s}$, och beräknar dessa var för sig.
+  \begin{align}
+    A_{rep} &= 2A_t + A_s \\
+    A_t &= \frac{|HP| \cdot |HB|}{2} = \frac{\frac{a}{2} \cdot b}{2} = \frac{ab}{4} \\
+    A_s &= \frac{\pi-2v}{2\pi} \cdot \pi r^2 = \frac{r^2}{2}(\pi-2v)
+  \end{align}
+
+  Kombinerar vi dessa så får vi:
+  \begin{align}
+    A_{rep} &= 2\left(\frac{ab}{4}\right) + \frac{r^2}{2}(\pi-2v) \nonumber \\
+    &= \frac {ab + r^2(\pi-2v)}{2} \label{reparea}
+  \end{align}
+
+  Vi behöver uttrycka $r$ i termer av $v$:
+  \begin{align}
+    \cos v &= \frac{\frac{a}{2}}{r} = \frac{a}{2r} \\
+    r &= \frac{a}{2 \cos v} \label{rinv}
+  \end{align}
+
+  Vi behöver uttrycka $b$ i termer av $v$:
+  \begin{align}
+    \tan v &= \frac{b}{\frac{a}{2}} = \frac{2b}{a} \\
+    b &= \frac{a \tan v}{2} \label{binv}
+  \end{align}
+
+  Nu kan vi kombinera (\ref{reparea}), (\ref{rinv}) och (\ref{binv}) för att få en formel för $A_{rep}$ som bara beror på $v$:
+  \begin{align}
+    A_{rep} &= \frac {ab + r^2(\pi-2v)}{2} \label{repareainbrv} \\
+    &= \frac{a(\frac{a \tan v}{2}) + (\frac{a}{2 \cos v})^2(\pi-2v)}{2} \nonumber \\
+    &= \frac{\frac{a^2 \tan v}{2} + \frac{a^2}{4 \cos^2 v}(\pi-2v)}{2} \nonumber \\
+    &= \frac{a^2}{4} \tan v + \frac{a^2(\pi-2v)}{8 \cos^2 v} \nonumber \\
+    &= \frac{a^2}{4} \left( \tan v + \frac{\pi-2v}{2 \cos^2 v} \right) \label{repareainv}
+  \end{align}
+
+  \subsection*{Beräkning av $v$}
+
+  Nästa steg är att jämställa (\ref{halvahagen}) och (\ref{repareainv}), vilket enligt ovanstående diskussion bör leda oss till att vi kan bestämma $v$.
+  \begin{align}
+    \frac{A_{hage}}{2} &= \frac{a^2}{4} \left( \tan v + \frac{\pi-2v}{2 \cos^2 v} \right) \nonumber \\
+    \frac{a^2}{2} &= \frac{a^2}{4} \left( \tan v + \frac{\pi-2v}{2 \cos^2 v} \right) \label{getsridofa}
+  \end{align}
+
+  Vi ser omedelbart i (\ref{getsridofa}) att $a$ försvinner, precis som förväntat. Vi fortsätter med förenklingen.
+  \begin{align}
+    \frac{1}{2} &= \frac{1}{4} \left( \tan v + \frac{\pi-2v}{2 \cos^2 v} \right) \nonumber \\
+    1 &= \frac{1}{2} \left( \tan v + \frac{\pi-2v}{2 \cos^2 v} \right) \nonumber \\
+    2 &= \tan v + \frac{\pi-2v}{2 \cos^2 v} \nonumber \\
+    2 &= \frac{\sin v}{\cos v} + \frac{\pi-2v}{2 \cos^2 v} \nonumber \\
+    2 &= \frac{2\cos v\sin v}{2\cos^2 v} + \frac{\pi-2v}{2 \cos^2 v} \nonumber \\
+    2 &= \frac{\sin 2v + \pi - 2v}{2\cos^2 v} \nonumber \\
+    4 \cos^2 v &= \sin 2v + \pi - 2v \nonumber \\
+    0 &= \sin 2v + \pi - 2v - 4 \cos^2 v \label{vekv}
+  \end{align}
+
+  Tyvärr ser vi här att det blir svårt (omöjligt?) att få ut $v$ i exakt form. Vi kan dock använda numeriska metoder för att få fram ett närmevärde på $v$. M.h.a. Wolfram Alpha ser vi att (\ref{vekv}) har ett nollställe i det förväntade intervallet:
+  \begin{align}
+    v &\approx 0,540 \label{vapprox}
+  \end{align}
+
+  \subsection*{Beräkning av $r$}
+
+  För att besvara det ursprungliga problemet så återstår det bara nu att bestämma $r = f(a) = ka$. Vi ser att vi i (\ref{rinv})) redan har definierat denna funktion. Om vi ersätter $v$ i (\ref{rinv}) med vårt närmevärde (\ref{vapprox}) så får vi:
+  \begin{align}
+    r &\approx \left(\frac{1}{2 \cos 0,540}\right) \cdot a \nonumber \\
+    &\approx 0,583 \cdot a \hspace{10pt} \blacksquare \label{ranswer}
+  \end{align}
+
+  \subsection*{Sanity check}
+
+  Genom att använda närmevärdet för $v$ (\ref{vapprox}) så kan vi räkna ut $b$ (\ref{binv}) och $r$ (\ref{rinv}) och sedan kombinera dessa med vår ursprunglig formel för $A_{rep}$ (\ref{reparea}). Vi ska sedan visa att $A_{rep} / A_{hage} \approx 0,500 \Leftrightarrow A_{rep} \approx a^2 \cdot 0,500$.
+  \begin{align}
+    cos(0,540) &\approx 0,858 \nonumber \\
+    tan(0,540) &\approx 0,599 \nonumber \\
+    r &\approx a \cdot \frac{1}{2 \cdot 0,858} \nonumber \\
+    b &\approx a \cdot \frac{0,599}{2} \nonumber \\
+    A_{rep} &= \frac{1}{2} \left( ab + r^2(\pi-2v) \right) \nonumber \\
+    &\approx \frac{1}{2} \left( a \cdot a \cdot \frac{0,599}{2} + (a \cdot \frac{1}{2 \cdot 0,858})^2(3.142 - 2 \cdot 0,540) \right) \nonumber \\
+    &\approx a^2 \cdot \frac{1}{2} \left( \frac{0,599}{2} + (\frac{1}{2 \cdot 0,858})^2(3.142 - 2 \cdot 0,540) \right) \nonumber \\
+    &\approx a^2 \cdot \frac{1}{2} \cdot 1,000 \nonumber \\
+    &\approx a^2 \cdot 0,500
+  \end{align}
+
+\end{document}
